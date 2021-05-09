@@ -3,22 +3,54 @@ import React from 'react';
 import styled from 'styled-components';
 
 const TagsSection = styled.section`
-  background: #ffffff; padding: 12px 16px;
-  >ol{ margin: 0 -12px;
+  background: #ffffff;
+  padding: 12px 16px;
+
+  > ol {
+    margin: 0 -12px;
+
     > li {
-      background: #d9d9d9; border-radius: 18px;
-      display: inline-block; padding: 3px 18px;
-      font-size: 14px; margin: 8px 12px;
+      background: #d9d9d9;
+      border-radius: 18px;
+      display: inline-block;
+      padding: 3px 18px;
+      font-size: 14px;
+      margin: 8px 12px;
     }
   }
-  >button{
-    background: none; border: none;
-    border-bottom: 1px solid #333; padding: 2px 4px;
-    color: #666;margin-top: 8px;
+
+  > button {
+    background: none;
+    border: none;
+    border-bottom: 1px solid #333;
+    padding: 2px 4px;
+    color: #666;
+    margin-top: 8px;
   }
 `;
 
 const NotesSection = styled.section`
+  background: #f5f5f5;
+  padding: 0 16px;
+  font-size: 14px;
+
+  > label {
+    align-items: center;
+    display: flex;
+
+    > span {
+      margin-right: 16px;
+      white-space: nowrap;
+    }
+
+    > input {
+      display: block;
+      width: 100%;
+      height: 72px;
+      background: none;
+      border: none;
+    }
+  }
 `;
 
 const CategorySection = styled.section`
@@ -41,8 +73,10 @@ function Money() {
                 <button>新增标签</button>
             </TagsSection>
             <NotesSection>
-                <span>备注</span>
-                <input type="text"/>
+                <label>
+                    <span>备注</span>
+                    <input type="text" placeholder="在这里添加备注"/>
+                </label>
             </NotesSection>
             <CategorySection>
                 <ul>
