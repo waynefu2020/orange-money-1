@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import React, {useState} from 'react';
+import {useTags} from "../../useTags";
 
 type Props = {
     value: string[];
@@ -7,7 +8,7 @@ type Props = {
 }
 
 const TagsSection: React.FC<Props> = (props) => {
-    const [tags, setTags] = useState<string[]>(['衣服', '住房', '餐饮', '交通']);
+    const {tags, setTags} = useTags();
     const selectedTags = props.value;
     const onAddTag = () => {
         const tagName = window.prompt('新标签名称是？');
