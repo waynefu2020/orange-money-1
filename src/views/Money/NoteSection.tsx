@@ -47,4 +47,5 @@ const NoteSection: React.FC = ()=>{
     )
 }
 
+
 export {NoteSection}
