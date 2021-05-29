@@ -16,11 +16,11 @@ function App() {
       <AppWrapper>
         <Router>
           <Switch>
-            <Route path="/tags/:tag" exact>
-              <Tag/>
-            </Route>
             <Route path="/tags" exact>
               <Tags/>
+            </Route>
+            <Route path="/tags/:id" exact>
+              <Tag/>
             </Route>
             <Route path="/money" exact>
               <Money/>
