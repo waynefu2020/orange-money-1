@@ -27,9 +27,9 @@ background: white;
 `
 
 const Tag: React.FC = (props) => {
-    const {findTag} = useTags()
-    let { id } = useParams<Params>()
-    const tag = findTag(parseInt(id))
+    const {findTag, updateTag} = useTags()
+    let { id: idString } = useParams<Params>()
+    const tag = findTag(parseInt(idString))
     return (
         <Layout>
             <TopBar>
@@ -38,7 +38,12 @@ const Tag: React.FC = (props) => {
                 <Icon/>
             </TopBar>
             <InputWrapper>
-                <Input type="text" placeholder="标签名" label="标签名"/>
+                <Input type="text" placeholder="标签名" label="标签名"
+                       value={tag.name}
+                       onChange={(e)=>{
+                           updateTag(tag.id, {name: e.target.value})
+                       }}
+                />
             </InputWrapper>
             <div>
                 <Space/>
