@@ -3,10 +3,10 @@ import {useTags} from "../useTags";
 import {useParams} from "react-router-dom";
 import Layout from "../components/Layout";
 import Icon from "../components/Icon";
-import { Button } from "components/Button";
+import {Button} from "components/Button";
 import styled from "styled-components";
 import {Input} from "../components/Input";
-import { Center } from "components/Center";
+import {Center} from "components/Center";
 import {Space} from "../components/Space";
 
 type Params = {
@@ -21,15 +21,35 @@ const TopBar = styled.header`
   background: white;
 `
 const InputWrapper = styled.div`
-background: white;
+  background: white;
   padding: 0 16px;
   margin-top: 16px;
 `
 
 const Tag: React.FC = (props) => {
-    const {findTag, updateTag} = useTags()
-    let { id: idString } = useParams<Params>()
+    const {findTag, updateTag, deleteTag} = useTags()
+    let {id: idString} = useParams<Params>()
     const tag = findTag(parseInt(idString))
+    const tagContent =(tag: {id: number, name: string})=> (
+        <div>
+            <InputWrapper>
+                <Input type="text" placeholder="标签名" label="标签名"
+                       value={tag.name}
+                       onChange={(e) => {
+                           updateTag(tag.id, {name: e.target.value})
+                       }}
+                />
+            </InputWrapper>
+            <Center>
+                <Space/>
+                <Space/>
+                <Space/>
+                <Button onClick={() => {
+                    deleteTag(tag.id)
+                }}>删除标签</Button>
+            </Center>
+        </div>
+    )
     return (
         <Layout>
             <TopBar>
@@ -37,23 +57,9 @@ const Tag: React.FC = (props) => {
                 <span>编辑标签</span>
                 <Icon/>
             </TopBar>
-            <InputWrapper>
-                <Input type="text" placeholder="标签名" label="标签名"
-                       value={tag.name}
-                       onChange={(e)=>{
-                           updateTag(tag.id, {name: e.target.value})
-                       }}
-                />
-            </InputWrapper>
-            <div>
-                <Space/>
-                <Space/>
-                <Space/>
-                <Center>
-                    <Button>删除标签</Button>
-                </Center>
-            </div>
+            {tag ? tagContent(tag): <Center>tag不存在</Center>}
         </Layout>
     )
+
 }
 export {Tag}
