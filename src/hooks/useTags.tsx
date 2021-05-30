@@ -1,7 +1,7 @@
 import {useEffect, useRef, useState} from "react";
 import {create} from "domain";
-import {createId} from "./lib/createId";
-import {useUpdate} from "./hooks/useUpdate";
+import {createId} from "../lib/createId";
+import {useUpdate} from "./useUpdate";
 
 const useTags = () => {
     const [tags, setTags] = useState<{ id: number, name: string }[]>([]);
